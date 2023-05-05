@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { Todo } from 'types/Todo';
 
 function TodoAdder({
@@ -10,7 +10,8 @@ function TodoAdder({
 }) {
   const [title, setTitle] = useState<string>('');
 
-  const handleSubmit = () => {
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
     const id = Math.max(...todos.map((todo) => todo.id)) + 1;
     setTodos([...todos, { completed: false, id, title }]);
   };
